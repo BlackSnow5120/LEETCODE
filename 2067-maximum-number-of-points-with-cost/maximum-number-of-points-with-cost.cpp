@@ -25,7 +25,6 @@ public:
             
             for(int i = 0; i < col; i++) {
                 newDp[i] = max(leftMax[i] - i, rightMax[i] + i) + points[r][i];
-                cout<<leftMax[i];
             }
             
             dp = newDp;
