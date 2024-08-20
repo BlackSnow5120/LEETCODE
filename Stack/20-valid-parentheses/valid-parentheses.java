@@ -11,9 +11,9 @@ class Solution {
             else
             {
                 if(s1.empty()){return false;}
-                if(a==')'){if(s1.peek()!='('){return false;}else{s1.pop();}}
-                if(a==']'){if(s1.peek()!='['){return false;}else{s1.pop();}}
-                if(a=='}'){if(s1.peek()!='{'){return false;}else{s1.pop();}}
+                if(a==')'){if(s1.peek()!='('){System.out.print("a");return false;}else{s1.pop();}}
+                if(a==']'){if(s1.peek()!='['){System.out.print("b");return false;}else{s1.pop();}}
+                if(a=='}'){if(s1.peek()!='{'){System.out.print("c");return false;}else{s1.pop();}}
             }
         }
         if(!s1.empty()){return false;}
