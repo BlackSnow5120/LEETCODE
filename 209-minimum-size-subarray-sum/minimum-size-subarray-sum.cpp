@@ -12,7 +12,7 @@ public:
             temp_sum+=nums[j++];
             while(temp_sum>=target)
             {
-                cout<<temp_sum<<i<<j<<endl;
+                // cout<<temp_sum<<i<<j<<endl;
                 ans=min(ans,abs(i-j));
                 temp_sum-=nums[i++];
             }
