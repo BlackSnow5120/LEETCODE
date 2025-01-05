@@ -1,25 +1,28 @@
 class Solution {
 public:
-    int func(int i, int j, string& s, vector<vector<int>>& dp) {
-        // Base case: If pointers cross, the subsequence length is 0
-        if (i > j) return 0;
+int lcsMemo(int ind1, int ind2, string& s1, string& s2, vector<vector<int>>& dp) {
+    // Base case: If either string is exhausted, the LCS length is 0
+    if (ind1 < 0 || ind2 < 0) return 0;
 
-        // Base case: Single character is a palindrome of length 1
-        if (i == j) return 1;
+    // If already computed, return the stored result
+    if (dp[ind1][ind2] != -1) return dp[ind1][ind2];
 
-        // Check memoization table
-        if (dp[i][j] != -1) return dp[i][j];
-
-        if (s[i] == s[j]) {
-            return dp[i][j] = 2 + func(i + 1, j - 1, s, dp);
-        }
-
-        return dp[i][j] = max(func(i + 1, j, s, dp), func(i, j - 1, s, dp));
+    // Recursive case
+    if (s1[ind1] == s2[ind2]) {
+        // If characters match, include them in the LCS
+        return dp[ind1][ind2] = 1 + lcsMemo(ind1 - 1, ind2 - 1, s1, s2, dp);
+    } else {
+        // Otherwise, take the maximum by excluding one character at a time
+        return dp[ind1][ind2] = max(lcsMemo(ind1 - 1, ind2, s1, s2, dp), lcsMemo(ind1, ind2 - 1, s1, s2, dp));
     }
-
+}
     int longestPalindromeSubseq(string s) {
-        int n = s.size();
-        vector<vector<int>> dp(n, vector<int>(n, -1));
-        return func(0, n - 1, s, dp);
+            string t = s;
+    reverse(t.begin(), t.end()); // Reverse the string to get the comparison string
+
+    int n = s.size();
+    vector<vector<int>> dp(n, vector<int>(n, -1)); // Create a memoization table
+
+    return lcsMemo(n - 1, n - 1, s, t, dp);
     }
 };
