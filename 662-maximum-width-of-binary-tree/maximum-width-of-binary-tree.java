@@ -14,40 +14,59 @@
  * }
  */
 class Solution {
+    public int left = 0;
+    public int right = 0;
 
-    class Pair{
-        TreeNode node;
-        int idx;
-        Pair(TreeNode node , int i){
-            this.node = node;
-            this.idx = i;
-        }
+    public void func(TreeNode root, int hd) {
+        if (root == null)
+            return;
+        if (hd < 0 && hd < left)
+            left = hd;
+        else if (hd > 0 && hd > right)
+            right = hd;
+        func(root.left, hd - 1);
+        func(root.right, hd + 1);
     }
 
     public int widthOfBinaryTree(TreeNode root) {
-        Queue<Pair>q = new LinkedList<>();
-        q.offer(new Pair(root,0));
+        Queue<TreeNode> q1 = new LinkedList<>();
+        Queue<Integer> q2 = new LinkedList<>();
 
-        int ans = 0;
+        q1.add(root);
+        q2.add(0);
+        int width = 0;
+        int size = q1.size();
+        int nulls = -1;
+        int t = 3;
+        while (!q1.isEmpty()) {
+            size = q1.size();
+            int minIndex = q2.peek(); 
+            Integer l = 0;
+            Integer r = 0;
+            for (int i = 0; i < size; i++) {
+                TreeNode temp = q1.peek();
+                q1.poll();
+                Integer curr = q2.peek();
+                q2.poll();
+                if(i==0) l=curr;
+                if(i==size-1) r=curr;
+                if(temp.left!=null)
+                {
+                    q1.add(temp.left);
+                    q2.add(2*curr + 1);
+                }
+                if(temp.right!=null)
+                {
+                    q1.add(temp.right);
+                    q2.add(2*curr + 2);
+                }
 
-        while(!q.isEmpty()){
-            int n = q.size();
-            int l = 0 , r = 0;
-            for(int i = 0; i < n; i++){
-                Pair p = q.poll();
-                TreeNode node = p.node;
-                int idx = p.idx;
-                if(i == 0) l = idx;
-                if(i == n-1) r = idx;
-
-                if(node.left != null) q.offer(new Pair(node.left,2*idx+1));
-                if(node.right != null) q.offer(new Pair(node.right,2*idx+2));
 
             }
-
-            ans = Math.max(ans,r-l);
-
+            width = Math.max(width, r - l+1);
+            size = q1.size();
         }
-        return ans+1;
+
+        return width;
     }
 }
