@@ -11,7 +11,6 @@ class Solution {
             int ind = i;
             while(ind-i-ind2<len)
             {
-                System.out.print(gap);
                 if(ind2!=0 && ind2<tempgap+1)
                 {
                     if(ind-i-ind2>0 && ind-i-ind2<len)
