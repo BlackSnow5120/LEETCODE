@@ -8,9 +8,11 @@ class Solution {
             if (nums[i] < third) {
                 return true;
             }
+
             while (!stack.isEmpty() && nums[i] > stack.peek()) {
                 third = stack.pop(); 
             }
+
             stack.push(nums[i]); 
         }
 
