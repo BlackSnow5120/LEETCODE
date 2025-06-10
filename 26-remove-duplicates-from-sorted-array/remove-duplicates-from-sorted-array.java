@@ -1,18 +1,15 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        int i=0;
-        int size = nums.length;
-        int ans = 0;
-        for(int j = 1;j<size;j++)
+        HashMap<Integer,Integer> mp = new HashMap<>();
+        int k = 0;
+        for(int i = 0;i<nums.length;i++)
         {
-            if(nums[i]!=nums[j])
+            if(mp.getOrDefault(nums[i],0)==0)
             {
-                
-                nums[ans++] = nums[i];
-                i=j;
-            } 
+                nums[k++]=nums[i];
+                mp.put(nums[i],1);
+            }
         }
-        nums[ans++] = nums[i];
-        return ans;
+        return k;
     }
 }
