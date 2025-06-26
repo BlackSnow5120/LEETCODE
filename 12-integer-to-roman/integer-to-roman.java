@@ -3,16 +3,16 @@ class Solution {
         int[] value = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
         String[] symble = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
 
-        String ans = "";
+        StringBuilder sb = new StringBuilder();
 
         for(int i=0; i<value.length && num>0; i++){
             while(num >= value[i]){
                 num -=value[i];
-                ans+=symble[i];
+                sb.append(symble[i]);
             }
 
         }
-        return ans;
+        return sb.toString();
         
         
     }
