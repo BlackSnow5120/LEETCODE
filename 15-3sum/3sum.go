@@ -5,6 +5,9 @@ func threeSum(nums []int) [][]int {
 	ans := make([][]int,0)
 
 	for i := 0; i < size-2; i++ {
+        if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
 		j := i + 1
 		k := size - 1
         for j<k{
