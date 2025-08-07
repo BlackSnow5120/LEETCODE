@@ -9,7 +9,6 @@ func strStr(haystack string, needle string) int {
 		if haystack[i] == needle[j] {
 			j++   
 		}
-        fmt.Print(i)
 	}
 	if j == len(needle) {
 		return i - j
