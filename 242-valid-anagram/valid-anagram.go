@@ -2,14 +2,14 @@ func isAnagram(s string, t string) bool {
     if(len(s)!=len(t)){
         return false
     }
-    mp := make(map[rune]int)
+    mp := [26]int{}
     for _,i := range(s){
-        mp[i]++
+        mp[i-rune('a')]++
     }
     
         for _,i := range(t){
-        mp[i]--
-        if(mp[i]==-1){
+        mp[i-rune('a')]--
+        if(mp[i-rune('a')]==-1){
             return false
         }
     }
