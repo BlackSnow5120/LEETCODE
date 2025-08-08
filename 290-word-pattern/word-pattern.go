@@ -7,7 +7,6 @@ func wordPattern(pattern string, s string) bool {
         return false
     }
 	for ind, i := range pattern {
-        fmt.Println(mp1[sarr[ind]])
 		if mp[i] == "" && mp1[sarr[ind]] == false {
 			mp[i] = sarr[ind]
             mp1[sarr[ind]] = true
