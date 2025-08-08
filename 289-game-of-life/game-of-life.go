@@ -41,7 +41,6 @@ func gameOfLife(board [][]int) {
 			}else{
                 board1[i][j]=board[i][j]
             }
-			fmt.Println(count)
 		}
 
 	}
