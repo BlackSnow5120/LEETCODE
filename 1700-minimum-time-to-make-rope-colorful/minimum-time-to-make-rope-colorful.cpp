@@ -5,8 +5,6 @@ public:
         int ans = 0;
         int maxTime = 0;
         int totalTime = 0;
-        if (n == 0)
-            return 0;
         int count = 0;
         char col = colors[0];
         for (int j = 0; j < n; j++) {
