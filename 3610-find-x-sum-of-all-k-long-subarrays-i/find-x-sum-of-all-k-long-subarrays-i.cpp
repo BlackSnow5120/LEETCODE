@@ -5,12 +5,12 @@ class Solution {
 public:
     int xsum(unordered_map<int,int> freq, int x) {
         vector<pair<int,int>> numsfreq;
-        for (auto p : freq) {
+        for (auto &p : freq) {
             if (p.second > 0)  // ignore zero counts
                 numsfreq.push_back({p.first, p.second});
         }
 
-        sort(numsfreq.begin(), numsfreq.end(), [](pair<int,int> a, pair<int,int> b) {
+        sort(numsfreq.begin(), numsfreq.end(), [](pair<int,int> &a, pair<int,int> &b) {
             if (a.second != b.second) return a.second > b.second; // higher freq first
             return a.first > b.first; // if tie, larger number first
         });
@@ -36,6 +36,7 @@ public:
         for (int i = k; i < nums.size(); i++) {
             freq[nums[i]]++;
             freq[nums[i - k]]--;
+            if (freq[nums[i - k]] == 0) freq.erase(nums[i - k]);
             ans.push_back(xsum(freq, x));
         }
 
