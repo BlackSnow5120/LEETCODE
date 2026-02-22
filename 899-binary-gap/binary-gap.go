@@ -3,7 +3,6 @@ func binaryGap(n int) int {
 	temp := -1
 
 	for n > 0 {
-        fmt.Println(n,n&1,temp)
 		if n&1 == 1 {
 			ans = max(temp, ans)
 			temp = 0
