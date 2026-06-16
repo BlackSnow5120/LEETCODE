@@ -1,18 +1,19 @@
 class Solution {
-    public int[] twoSum(int[] nums, int tar) {
-        int i =0;
-        int j = nums.length-1;
-
-        while(i<j)
-        {
-            int curr = nums[i]+nums[j];
-            if(curr == tar) break;
-            if(curr<tar) i++;
-            else j--;
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> mp = new HashMap<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            
+            // If the complement exists, we found our pair
+            if (mp.containsKey(complement)) {
+                return new int[]{mp.get(complement), i+1};
+            }
+            
+            // Otherwise, put the current number and index in the map
+            mp.put(nums[i], i+1);
         }
-        int ans[] = new int[2];
-        ans[0]=i+1;
-        ans[1]=j+1;
-        return ans;
+        
+        return new int[]{0, 0}; 
     }
 }
