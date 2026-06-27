@@ -17,19 +17,11 @@ class Solution {
             }
 
             int ans = 0;
-            long next = num; // Use long to prevent integer overflow when squaring
-
-            // Cache the frequency count to avoid redundant map lookups
+            long next = num;
             int count = mp.getOrDefault((int) next, 0);
             while (count >= 2) {
                 ans += 2;
                 next = next * next;
-                
-                // Break early if we exceed reasonable bounds to prevent endless operations
-                if (next > 1_000_000_000) { 
-                    count = 0;
-                    break;
-                }
                 count = mp.getOrDefault((int) next, 0);
             }
 
