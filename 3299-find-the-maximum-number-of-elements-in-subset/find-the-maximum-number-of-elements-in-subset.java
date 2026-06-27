@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 class Solution {
     public int maximumLength(int[] nums) {
         HashMap<Integer, Integer> mp = new HashMap<>();
@@ -7,7 +5,6 @@ class Solution {
             mp.merge(num, 1, Integer::sum);
         }
 
-        // Handle the base case for 1s separately
         int countOfOnes = mp.getOrDefault(1, 0);
         int result = (countOfOnes > 0) ? (countOfOnes % 2 == 0 ? countOfOnes - 1 : countOfOnes) : 1;
 
@@ -15,7 +12,6 @@ class Solution {
             if (num == 1) {
                 continue;
             }
-
             int ans = 0;
             long next = num;
             int count = mp.getOrDefault((int) next, 0);
