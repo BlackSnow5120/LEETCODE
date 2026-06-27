@@ -1,39 +1,47 @@
+import java.util.HashMap;
+
 class Solution {
     public int maximumLength(int[] nums) {
-        HashMap<Integer,Integer> mp = new HashMap<>();
-        for(int i =0;i<nums.length;i++){
-            if(mp.containsKey(nums[i])){
-                mp.put(nums[i],mp.get(nums[i])+1);
-            }else{
-                mp.put(nums[i],1);
-            }
+        HashMap<Integer, Integer> mp = new HashMap<>();
+        for (int num : nums) {
+            mp.merge(num, 1, Integer::sum);
         }
-        int result = 1;
-        if(mp.getOrDefault(1,0)>1){
-            if(mp.getOrDefault(1,0)%2==0){
-                result = mp.get(1)-1;
-            }else{
-                result = mp.get(1);
-            }
-        }
-        for(int i =0;i<nums.length;i++){
-            int ans=0;
-            int next = nums[i];
-            if(next==1){
+
+        // Handle the base case for 1s separately
+        int countOfOnes = mp.getOrDefault(1, 0);
+        int result = (countOfOnes > 0) ? (countOfOnes % 2 == 0 ? countOfOnes - 1 : countOfOnes) : 1;
+
+        for (int num : nums) {
+            if (num == 1) {
                 continue;
             }
-            while(mp.getOrDefault(next,0)>=2){
-                ans+=2;
-                next = next*next;
+
+            int ans = 0;
+            long next = num; // Use long to prevent integer overflow when squaring
+
+            // Cache the frequency count to avoid redundant map lookups
+            int count = mp.getOrDefault((int) next, 0);
+            while (count >= 2) {
+                ans += 2;
+                next = next * next;
+                
+                // Break early if we exceed reasonable bounds to prevent endless operations
+                if (next > 1_000_000_000) { 
+                    count = 0;
+                    break;
+                }
+                count = mp.getOrDefault((int) next, 0);
             }
-            if(mp.getOrDefault(next,0)==1){
-                ans+=1;
-            }else{
-                ans-=1;
+
+            if (count == 1) {
+                ans += 1;
+            } else {
+                ans -= 1;
             }
-            result = Math.max(result,ans);
             
+            result = Math.max(result, ans);
         }
+
         return result;
     }
 }
