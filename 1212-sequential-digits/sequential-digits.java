@@ -16,7 +16,6 @@ class Solution {
             firstNum *= 10;
             digit++;
         }
-        System.out.println(firstNum);
         firstNum /= 10;
         long num = (long)firstNum;
         int powerOfnum = powerOfLow;
