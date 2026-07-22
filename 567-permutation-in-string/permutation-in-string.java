@@ -11,7 +11,6 @@ class Solution {
             char rightChar = s2.charAt(right);
             mp2.put(rightChar, mp2.getOrDefault(rightChar, 0) + 1);
             while (left <= right && mp2.get(s2.charAt(right)) > mp1.getOrDefault(s2.charAt(right), 0)) {
-                System.out.println(s2.charAt(left));
                 mp2.put(s2.charAt(left), mp2.get(s2.charAt(left)) - 1);
                 left++;
             }
