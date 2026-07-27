@@ -14,9 +14,7 @@ class Solution {
                 max2 = nums[i];
             }
         }
-        if (max2 == -1) {
-            max2 = max;
-        }
+
         return (max2 - 1) * (max - 1);
 
     }
