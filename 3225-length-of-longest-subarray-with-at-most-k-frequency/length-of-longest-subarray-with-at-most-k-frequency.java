@@ -9,7 +9,6 @@ class Solution {
             if (mp1.getOrDefault(nums[j], 0) > k) {
                 
                 while (mp1.get(nums[j])>k) {
-                System.out.println(i);
 
                     mp1.put(nums[i], mp1.getOrDefault(nums[i], 0) - 1);
                     i++;
